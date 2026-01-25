@@ -41,8 +41,17 @@ def receive():
 font_win = font.Font(None, 72)
 font_main = font.Font(None, 36)
 # --- ЗОБРАЖЕННЯ ----
-
+BG_IMG = image.load("Images/bg.webp")
+BG_IMG = transform.scale(BG_IMG, (WIDTH, HEIGHT))
+Ball_IMG = image.load("Images/ball.png")
+Ball_IMG = transform.scale(Ball_IMG, (WIDTH, HEIGHT))
 # --- ЗВУКИ ---
+mixer.music.load("sound/bgsous.ogg") #Завантаження музики з папки
+mixer.music.set_volume(0.05) #Встановлення гучності музики
+mixer.music.play(-1) # Зациклення композиції
+
+
+
 
 # --- ГРА ---
 game_over = False
@@ -88,7 +97,7 @@ while True:
         continue  # Блокує гру після перемоги
 
     if game_state:
-        screen.fill((30, 30, 30))
+        screen.blit(BG_IMG, (0, 0))
         draw.rect(screen, (0, 255, 0), (20, game_state['paddles']['0'], 20, 100))
         draw.rect(screen, (255, 0, 255), (WIDTH - 40, game_state['paddles']['1'], 20, 100))
         draw.circle(screen, (255, 255, 255), (game_state['ball']['x'], game_state['ball']['y']), 10)
