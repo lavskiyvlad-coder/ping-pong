@@ -50,8 +50,8 @@ mixer.music.load("sound/bgsous.ogg") #Завантаження музики з �
 mixer.music.set_volume(0.05) #Встановлення гучності музики
 mixer.music.play(-1) # Зациклення композиції
 
-
-
+ballsous= mixer.Sound("sound/ball.wav") 
+winsous = mixer.Sound("sound/winsous.wav") 
 
 # --- ГРА ---
 game_over = False
@@ -107,9 +107,11 @@ while True:
         if game_state['sound_event']:
             if game_state['sound_event'] == 'wall_hit':
                 # звук відбиття м'ячика від стін
+                ballsous.play()# було змінено цей рядок
                 pass
             if game_state['sound_event'] == 'platform_hit':
                 # звук відбиття м'ячика від платформи
+                ballsous.play()# було змінено цей рядок
                 pass
 
     else:
