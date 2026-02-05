@@ -44,7 +44,7 @@ font_main = font.Font(None, 36)
 BG_IMG = image.load("Images/bg.webp")
 BG_IMG = transform.scale(BG_IMG, (WIDTH, HEIGHT))
 Ball_IMG = image.load("Images/ball.png")
-Ball_IMG = transform.scale(Ball_IMG, (WIDTH, HEIGHT))
+Ball_IMG = transform.scale(Ball_IMG, (20,20))
 # --- ЗВУКИ ---
 mixer.music.load("sound/bgsous.ogg") #Завантаження музики з папки
 mixer.music.set_volume(0.05) #Встановлення гучності музики
@@ -76,6 +76,7 @@ while True:
 
         if you_winner is None:  # Встановлюємо тільки один раз
             if game_state["winner"] == my_id:
+                winsous.play()
                 you_winner = True
             else:
                 you_winner = False
@@ -100,7 +101,9 @@ while True:
         screen.blit(BG_IMG, (0, 0))
         draw.rect(screen, (0, 255, 0), (20, game_state['paddles']['0'], 20, 100))
         draw.rect(screen, (255, 0, 255), (WIDTH - 40, game_state['paddles']['1'], 20, 100))
-        draw.circle(screen, (255, 255, 255), (game_state['ball']['x'], game_state['ball']['y']), 10)
+        #draw.circle(screen, (255, 255, 255), (game_state['ball']['x'], game_state['ball']['y']), 10)
+        screen.blit(Ball_IMG ,(game_state['ball']['x'], game_state['ball']['y']) )
+        
         score_text = font_main.render(f"{game_state['scores'][0]} : {game_state['scores'][1]}", True, (255, 255, 255))
         screen.blit(score_text, (WIDTH // 2 -25, 20))
 
